@@ -1,0 +1,177 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+  "id": "dca58e50-5d60-4825-9139-6ce82736cba6",
+  "name": "TeamhoodCreateTask",
+  "friendlyName": "TeamHood Create Task",
+  "description": "This job will create a task within Teamhood (c)",
+  "helpMarkDown": "",
+  "category": "Utility",
+  "author": "David Hefley <davidhefley@nebraska.edu>",
+  "version": {
+    "Major": 0,
+    "Minor": 1,
+    "Patch": 2
+  },
+  "instanceNameFormat": "NSWERS Teamhood Task Creator $(version)",
+  "groups": [
+    {
+      "name": "teamhoodapioptions",
+      "displayName": "API Options",
+      "isExpanded": false
+    },
+    {
+      "name": "teamhoodrequiredoptions",
+      "displayName": "Required Options",
+      "isExpanded": false
+    },
+    {
+      "name": "teamhoodoptionaloptions",
+      "displayName": "Optional Options",
+      "isExpanded": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "teamhoodapikey",
+      "type": "string",
+      "label": "Teamhood API Key",
+      "defaultValue": "",
+      "required": true,
+      "groupName": "teamhoodapioptions",
+      "helpMarkDown": "The API for your instance of Teamhood"
+    },
+    {
+      "name": "teamhoodbaseurl",
+      "type": "string",
+      "label": "Teamhood Base API Url",
+      "defaultValue": "",
+      "groupName": "teamhoodapioptions",
+      "required": true,
+      "helpMarkDown": "The base url for your Teamhood instance - something like *https://api-[organization].teamhood.com/*"
+    },
+    {
+      "name": "teamhoodworkspaceid",
+      "type": "string",
+      "label": "Workspace GUID",
+      "defaultValue": "",
+      "required": true,
+      "groupName": "teamhoodrequiredoptions",
+      "helpMarkDown": "GUID from Teamhood for the Workspace"
+    },
+    {
+      "name": "teamhoodboardid",
+      "type": "string",
+      "label": "Board ID",
+      "defaultValue": "",
+      "required": true,
+      "groupName": "teamhoodrequiredoptions",
+      "helpMarkDown": "GUID for the board to add the task to."
+    },
+    {
+      "name": "teamhoodrowid",
+      "type": "string",
+      "label": "Row ID",
+      "defaultValue": "",
+      "required": true,
+      "groupName": "teamhoodrequiredoptions",
+      "helpMarkDown": "The GUID for the Teamhood Row where to put the task. Defaults to first row"
+    },
+    {
+      "name": "teamhoodtasktitle",
+      "type": "string",
+      "label": "Task Title",
+      "defaultValue": "Important Task",
+      "required": true,
+      "groupName": "teamhoodrequiredoptions",
+      "helpMarkDown": "Task Title"
+    },
+ 
+    {
+      "name": "teamhoodassigneduserid",
+      "type": "string",
+      "label": "Assigned To ID",
+      "defaultValue": "",
+      "required": false,
+      "groupName": "teamhoodoptionaloptions",
+      "helpMarkDown": "If set, task will be assigned to this user"
+    },
+    {
+      "name": "teamhoodownerid",
+      "type": "string",
+      "label": "Owner ID",
+      "defaultValue": "",
+      "required": false,
+      "groupName": "teamhoodoptionaloptions",
+      "helpMarkDown": "If set, the task will have this as the owner"
+    },
+    {
+      "name": "teamhoodstatusid",
+      "type": "string",
+      "label": "Status ID",
+      "defaultValue": "",
+      "required": false,
+      "groupName": "teamhoodoptionaloptions",
+      "helpMarkDown": "The GUID for the status to use from Teamhood. Defaults to first status."
+    },
+    {
+      "name": "teamhoodstartdate",
+      "type": "string",
+      "label": "Task Start Date",
+      "defaultValue": "",
+      "required": false,
+      "groupName": "teamhoodoptionaloptions",
+      "helpMarkDown": "The start date for the task. Can use things like +7 Days"
+    },
+    {
+      "name": "teamhoodduedate",
+      "type": "string",
+      "label": "Task End Date",
+      "defaultValue": "",
+      "required": false,
+      "groupName": "teamhoodoptionaloptions",
+      "helpMarkDown": "The end date for the task. Can use things like +14 Days"
+    },
+    {
+      "name": "teamhooddescription",
+      "type": "multiLine",
+      "label": "Task Description",
+      "defaultValue": "",
+      "required": false,
+      "groupName": "teamhoodoptionaloptions",
+      "helpMarkDown": "The task description"
+    },
+    {
+      "name": "teamhoodestimation",
+      "type": "string",
+      "label": "Estimation",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "",
+      "groupName": "teamhoodoptionaloptions"
+    },
+    
+    {
+      "name": "teamhoodcustomfields",
+      "type": "multiLine",
+      "label": "Custom Fields",
+      "defaultValue": "",
+      "required": false,
+      "groupName": "teamhoodoptionaloptions",
+      "helpMarkDown": "Use format: \"field1\":\"value1\",\"field2\":\"value2\""
+    },
+    {
+      "name": "teamhoodtags",
+      "type": "multiLine",
+      "label": "Tags",
+      "defaultValue": "",
+      "required": false,
+      "groupName": "teamhoodoptionaloptions",
+      "helpMarkDown": "Use format: \"tag1\", \"tag2\""
+    }
+  ],
+  "execution": {
+    "Node20_1": {
+      "target": "index.js"
+    }
+  }
+}
